@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-deploy
+spec:
+  selector:
+    matchLabels:
+      app: docker-jenkins
+  replicas: 2
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+      metadata:
+        labels:
+          app: docker-jenkins
+      spec:
+        containers:
+        - name: docker-jenkins
+          image: docker-jenkins:v4
+          ports:
+          - containerPort: 8070
+
