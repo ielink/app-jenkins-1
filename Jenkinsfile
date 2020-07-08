@@ -7,5 +7,10 @@ pipeline {
             echo $GIT_BRANCH
          }
       }
+      stage('Build') {
+               steps {
+                  echo $GIT_BRANCH
+               }
+            }
    }
 }
