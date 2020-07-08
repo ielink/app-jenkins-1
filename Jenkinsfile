@@ -9,7 +9,7 @@ pipeline {
       }
       stage('Build') {
                steps {
-                  echo $GIT_BRANCH
+                  echo "$GIT_BRANCH"
                }
             }
    }
