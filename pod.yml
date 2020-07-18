@@ -8,6 +8,6 @@ metadata:
 spec:
   containers:
   - name: docker-jenkins
-    image: docker-jenkins:v1
+    image: docker-jenkins:v5
     ports:
     - containerPort: 8071

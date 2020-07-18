@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class JenkinsController {
 
-    @GetMapping("/lazy v5")
+    @GetMapping("/lazy")
     public String getLazy() {
-        return "lazy";
+        return "lazy v5";
     }
 }

@@ -64,6 +64,7 @@ spec:
 After change on the code
 1. `mvn clean install`
 2. `docker build -f Dockerfile -t docker-jenkins:<appNewVersion> .`
+    2. run the docker image: see [this page](Docker/Overview)
 3. change the app version in `deploy.yml`
 ```
 ...
@@ -79,6 +80,7 @@ After change on the code
 
 8. roll back : `k rollout undo deployment hello-deploy --to-revision=1`
 9. `k get deploy`
+10. check the node: `kubectl get nodes -o wide`
 
 # Jenkins config
 ## Connecting to Github
