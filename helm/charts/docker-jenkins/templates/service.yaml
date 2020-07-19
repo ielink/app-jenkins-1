@@ -7,8 +7,9 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-  - port: 8070
-    nodePort: 30001
+  - name: http
+    port: 8070
     protocol: TCP
+    targetPort: 8070
   selector:
     app: docker-jenkins

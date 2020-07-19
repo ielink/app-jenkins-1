@@ -81,6 +81,7 @@ After change on the code
 8. roll back : `k rollout undo deployment hello-deploy --to-revision=1`
 9. `k get deploy`
 10. check the node: `kubectl get nodes -o wide`
+11. check logs of pods: `k logs <pod-name>`
 
 # Jenkins config
 ## Connecting to Github

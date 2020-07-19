@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       app: docker-jenkins
-  replicas: 2
+  replicas: 1
   minReadySeconds: 10
   strategy:
     type: RollingUpdate
