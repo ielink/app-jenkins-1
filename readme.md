@@ -1,4 +1,32 @@
 # Overview
+# App 
+* `curl http://localhost:8070/lazy`
+# Docker workflow
+there are 3 components involve in docker workflow:
+
+* client host
+* server host
+* registry
+## Client host
+Where you can Download an image
+* CI/CD 
+* Docker CLI
+
+## Server host
+Images are downloaded or container
+
+## Registry
+Stateless, highly skilled server side application that stored and distributed docker images
+Some examples are :
+* Docker  hub
+* Amazon docker registry
+* gitlab registry
+Or it can be inside firewall like JFrog artifactory
+* MyAPP
+* OpenJDK
+* NGINX
+
+
 see [this](https://gitlab.com/hhammidd/unit-test/-/wikis/CI-CD/Jenkins2) for more info
 * `mvn clean install`
 * Create image : ` docker build -f Dockerfile -t docker-jenkins:<app-version> .` 
@@ -102,3 +130,10 @@ pipeline {
 ```
 
 ### Run the script Jenkinsfile
+
+# prometheus
+* ` docker run -p 9090:9090 -v prometheus.yml prom/prometheus`
+
+# Docker
+## Volume
+`docker run -p 3000:8070 -v $(pwd):/var/www -w "/var/www/" app-jenkins` run n port
