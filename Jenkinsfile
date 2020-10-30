@@ -4,7 +4,7 @@ pipeline {
    stages {
       stage('Verify Branch') {
          steps {
-            withMaven(maven : 'maven-3.6.3') {
+            withMaven(maven : 'maven_new') {
                sh 'mvn clean compile'
             }
              
