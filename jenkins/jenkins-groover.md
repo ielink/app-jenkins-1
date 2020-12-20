@@ -1,19 +1,12 @@
-pipeline {
-   agent any
+# Continouse Integration
+see https://www.youtube.com/watch?v=42HAiUOJR3M&ab_channel=ZarigaTongy
+* Checkout the Git
+* Build and test jar file
+* Build image locally on Docker desktop on mac(for others ...)
+* Push to Docker registry (this is docker hub)
 
-   stages {
-      stage('Build') {
-               steps {
-                  echo "$GIT_BRANCH"
-               }
-            }
-      stage('rest') {
-               steps {
-                  echo "$GIT_BRANCH"
-               }
-            }
-   }
-}
+P.S this is Github and docker  hub 
+```
 pipeline {
     environment {
         registry = "hhssaaffii/docker-jenkins"
@@ -39,15 +32,18 @@ pipeline {
                 }
             }
         }
-
-        stage("Test MkDocs") {
-            agent {
-                docker { image 'hhssaaffii/docker-jenkins:$BUILD_NUMBER'}
-            }
+        
+        stage("Push image") {
             steps {
-                sh 'docker docker-jenkins --version'
+                script {
+                    docker.withRegistry( '' ) {
+                        dockerImage.push()
+                    }
+                }
             }
-
         }
     }
 }
+```
+
+# Continouse Deployment

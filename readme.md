@@ -19,6 +19,31 @@ Use the following command so you can see more information about the nodes.
 * `k get svc`
 * `k create -f svc.yml`
 * Go to `localhost:30001/lazy`
+* if you have `svc.yaml` like belo go to : `http://20.73.200.130:8070/lazy`
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-svc
+  labels:
+    app: docker-jenkins
+spec:
+  type: LoadBalancer
+  ports:
+  - name: http
+    port: 8070
+    protocol: TCP
+    targetPort: 8070
+  selector:
+    app: docker-jenkins
+```
+* what you see on `k gget svc`:
+```
+NAME         TYPE           CLUSTER-IP   EXTERNAL-IP     PORT(S)          AGE
+hello-svc    LoadBalancer   10.0.66.76   20.73.200.130   8070:30702/TCP   6s
+kubernetes   ClusterIP      10.0.0.1     <none>          443/TCP          43h
+
+```
 
 ## Deployments
 ### Command
