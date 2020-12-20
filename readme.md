@@ -88,6 +88,19 @@ spec:
 * Show the replica set `k get rs`
 * more detail : `k describe rs`
 
+
+## see app logs
+* `k get pods`
+    *  
+    
+    ```
+    app-jenkins git:(feature/course1) ✗ k get pods
+    NAME                            READY   STATUS    RESTARTS   AGE
+    hello-deploy-789fdcb656-lqvxw   1/1     Running   0          13m
+
+    ```
+    
+* ` k logs hello-deploy-789fdcb656-lqvxw`
 #### Update deployment:
 After change on the code
 1. `mvn clean install`

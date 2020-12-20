@@ -1,7 +1,7 @@
 # Steps of deployment
-## App buid part
+## App build part
 0. Check you have docker and kubernetes up/running 
-    * Kubectl is installed
+    * Kubectl is installed: `kubectl version`
     * docker installed
         * docker desktop
         * docker hub
@@ -107,7 +107,7 @@ ENTRYPOINT ["java","-jar","/docker-jenkins.jar"]
 * Go to the: `localhost:30001/lazy`
 * Hoooray
 # helm
-
+https://www.youtube.com/watch?v=3GPpm2nZb2s&ab_channel=JustmeandOpensource
 ## Installation
 * `brew install kubernetes-helm`
 * version: `helm version`
@@ -177,7 +177,8 @@ docker-jenkins  default         2               2020-07-19 14:32:19.839219 +0200
 
 * you can roll back to previous version `helm rollback <app-deploy> <REVISION 1>`
 
-* delete the chart `helm delete --purge <app-name>`
+* delete the chart `helm delete <app-name>`
+    *  `helm delete docker-jenkins`
 ### Parametrized the chart
 * Create `values.yaml`
     ```
