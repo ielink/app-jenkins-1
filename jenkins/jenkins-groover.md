@@ -7,6 +7,12 @@ see https://www.youtube.com/watch?v=42HAiUOJR3M&ab_channel=ZarigaTongy
 
 P.S this is Github and docker  hub 
 ```
+properties([
+  parameters([
+    string(name: 'IMAGE_NAME', defaultValue: '11', description: 'Image TAG', )
+   ])
+])
+
 pipeline {
     environment {
         registry = "hhssaaffii/docker-jenkins"
@@ -20,6 +26,7 @@ pipeline {
                 git 'https://github.com/hhammidd/app-jenkins.git'
             }
         }
+        
         stage("build-test") {
             steps{
                 sh "mvn clean install"
@@ -42,6 +49,32 @@ pipeline {
                 }
             }
         }
+        
+        
+        stage("Remove Unused docker image") {
+            steps{
+                sh "docker rmi $registry:$BUILD_NUMBER"
+            }
+        }
+        
+        stage("Pull image from docker registry") {
+            steps{
+                sh "docker pull hhssaaffii/docker-jenkins:$BUILD_NUMBER"
+            }
+        }
+        
+        stage("Echo image name") {
+            steps{
+                echo "Image ${params.IMAGE_NAME}"
+            }
+        }
+        
+        stage("Install helm and deploy") {
+            steps{
+                sh "helm install docker-jenkins helm/charts/docker-jenkins"
+            }
+        }
+        
     }
 }
 ```

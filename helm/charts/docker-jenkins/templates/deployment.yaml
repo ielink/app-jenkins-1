@@ -15,11 +15,12 @@ spec:
       maxSurge: 1
   template:
     metadata:
+      namespace: {{ .Values.namespace }}
       labels:
         app: docker-jenkins
     spec:
       containers:
       - name: docker-jenkins
-        image: docker-jenkins:v1
+        image: {{.Values.ImageName}}:{{ .Values.tag }}
         ports:
         - containerPort: 8070

@@ -1,19 +1,9 @@
-pipeline {
-   agent any
+properties([
+  parameters([
+    string(name: 'IMAGE_TAG', defaultValue: '11', description: 'Image TAG', )
+   ])
+])
 
-   stages {
-      stage('Build') {
-               steps {
-                  echo "$GIT_BRANCH"
-               }
-            }
-      stage('rest') {
-               steps {
-                  echo "$GIT_BRANCH"
-               }
-            }
-   }
-}
 pipeline {
     environment {
         registry = "hhssaaffii/docker-jenkins"
@@ -27,6 +17,7 @@ pipeline {
                 git 'https://github.com/hhammidd/app-jenkins.git'
             }
         }
+
         stage("build-test") {
             steps{
                 sh "mvn clean install"
@@ -40,14 +31,34 @@ pipeline {
             }
         }
 
-        stage("Test MkDocs") {
-            agent {
-                docker { image 'hhssaaffii/docker-jenkins:$BUILD_NUMBER'}
-            }
+        stage("Push image") {
             steps {
-                sh 'docker docker-jenkins --version'
+                script {
+                    docker.withRegistry( '' ) {
+                        dockerImage.push()
+                    }
+                }
             }
-
         }
+
+
+        stage("Remove Unused docker image") {
+            steps{
+                sh "docker rmi $registry:$BUILD_NUMBER"
+            }
+        }
+
+        stage("Pull image from docker registry") {
+            steps{
+                sh "docker pull hhssaaffii/docker-jenkins:${params.IMAGE_TAG}"
+            }
+        }
+
+        stage("Install helm and deploy") {
+            steps{
+                sh " helm upgrade docker-jenkins  helm/charts/docker-jenkins --set tag=${params.IMAGE_TAG}"
+            }
+        }
+
     }
 }
