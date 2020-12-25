@@ -18,12 +18,6 @@ pipeline {
       }
     }
 
-    stage('build-test') {
-      steps {
-        sh 'mvn clean install'
-      }
-    }
-
   }
   environment {
     registry = 'hhssaaffii/docker-jenkins'
