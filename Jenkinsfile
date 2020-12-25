@@ -24,15 +24,6 @@ pipeline {
       }
     }
 
-    stage('build Image') {
-      steps {
-        script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
-        }
-
-      }
-    }
-
   }
   environment {
     registry = 'hhssaaffii/docker-jenkins'
