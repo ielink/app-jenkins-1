@@ -1,7 +1,12 @@
 properties([
   parameters([
-    string(name: 'IMAGE_TAG', defaultValue: '11', description: 'Image TAG', )
-   ])
+
+        booleanParam(defaultValue: false, description: 'Image TAG', name: 'deploy'),
+        string(name: 'IMAGE_TAG', defaultValue: '', description: 'Image TAG', ),
+        choice(choices: 'tst\nacc\nprd', description: 'environmet', name: 'env' ),
+        string(name: 'branch', defaultValue: '', description: 'branch', defaultValue: 'master')
+   ]),
+   pipelineTriggers([])
 ])
 
 pipeline {
