@@ -20,7 +20,7 @@ spec:
       spec:
         containers:
         - name: docker-jenkins
-          image: hhssaaffii/docker-jenkins:9
+          image: hhssaaffii/docker-jenkins:10
           ports:
           - containerPort: 8070
 

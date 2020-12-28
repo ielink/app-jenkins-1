@@ -1,15 +1,33 @@
+# Nodeport
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: hello-deploy
+#  namespace: default
+#  labels:
+#    app: docker-jenkins
+#spec:
+#  type: NodePort
+#  externalTrafficPolicy: Local
+#  ports:
+#  - port: 8070
+#    targetPort: 80
+#  selector:
+#    app: docker-jenkins
+
+# LoadBalancer
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello-svc
+  name: hello-deploy
+  namespace: default
   labels:
     app: docker-jenkins
 spec:
   type: LoadBalancer
   ports:
-  - name: http
-    port: 8070
+  - port: 8070
     protocol: TCP
-    targetPort: 8070
+    targetPort: 80
   selector:
     app: docker-jenkins

@@ -33,7 +33,7 @@ ENTRYPOINT ["java","-jar","/docker-jenkins.jar"]
 7. Check the kubernetes objects:
     * Check which is kubernetes provider : `kubectl config get-contexts`
         * Possible: minikube, google-cloud/aws/azur/docker-desktop
-        * switch with : k config use-context docker-for-desktop
+        * switch with : `k config use-context docker-for-desktop`
     * nodes will be ready : `kubectl get nodes -o wide`
     * Pods: `k get pods` , in case of no pods:
         ```

@@ -37,7 +37,7 @@ spec:
   selector:
     app: docker-jenkins
 ```
-* what you see on `k gget svc`:
+* what you see on `k get svc`:
 ```
 NAME         TYPE           CLUSTER-IP   EXTERNAL-IP     PORT(S)          AGE
 hello-svc    LoadBalancer   10.0.66.76   20.73.200.130   8070:30702/TCP   6s
@@ -127,3 +127,45 @@ pipeline {
 ```
 
 ### Run the script Jenkinsfile
+
+## namespace
+
+* `kubectl get namespaces`
+### What is inside namespace
+* `k get all -n metallb-system`
+
+# ingress
+* `k get secrets`
+* `k delete secret my-release-ingress-nginx-admission`
+* ` k delete serviceaccounts my-ngnix-nginx-ingress`
+* ` kubectl -n ingress-nginx get pod -o wide`
+* ` kubectl -n ingress-nginx get svc`
+* `kubectl get ingress -o wide`
+* `kubectl get serviceaccounts `
+* `kubectl get serviceaccounts/my-ngnix-nginx-ingress -o yaml   `
+* run nginx` kubectl run nginx --image=nginx --restart=Never `
+* `kubectl -n ingress-nginx get svc`
+* `curl -D- http://92.168.65.200 -H 'Host: hello-world.info'`
+*`kubectl -n ingress-nginx get pod -o wide`
+* ` kubectl get pods -n ingress-nginx  `
+* `k create -f ingress-resource-1.yaml`
+* ` alias k="kubectl"`
+* `k describe ing ingress-resource-1` 
+* delete :  k delete -f ingress-resource-1.yaml
+* if you have problrm : `kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission`
+* add host: `sudo vi /etc/hosts`
+*        
+
+
+# Configmap
+* `kubectl describe configmap <configName> -n <namespace>`
+    * `kubectl describe configmap config -n metallb-system`
+    
+    
+# Remove
+* helm list : ` helm delete <my-release>`
+* Remove deploy
+* remove ns
+* remove secret
+* remove pods
+
