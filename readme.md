@@ -169,3 +169,18 @@ pipeline {
 * remove secret
 * remove pods
 
+# Dashboard
+# docker desktop dasboard
+https://medium.com/backbase/kubernetes-in-local-the-easy-way-f8ef2b98be68
+* `kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-rc3/aio/deploy/recommended.yaml`
+* `kubectl proxy
+   Starting to serve on 127.0.0.1:8001`
+   
+* start dashboard on : http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy   
+* To find a valid token here you have a useful one-liner
+```
+kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | awk '/^deployment-controller-token-/{print $1}') | awk '$1=="token:"{print $2}'
+eyJhbGciOiJSUzI1NiIsImtpZCI6IlZvTDdpZXZTZ3BqOXdaVV9TOVI3UEZEOG5UNWVWS25IOWJGTkF5VVM4YjAifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJkZXBsb3ltZW50LWNvbnRyb2xsZXItdG9rZW4taG50c3EiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoiZGVwbG95bWVudC1jb250cm9sbGVyIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQudWlkIjoiYjJhOGQzODUtNzA1NS00MmMzLTlkOGMtZjIwZjlmZGRlZmNlIiwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50Omt1YmUtc3lzdGVtOmRlcGxveW1lbnQtY29udHJvbGxlciJ9.RNLzhfoOKbk1tZb26pH02vHkpjRdCasKf0vg199b-TrD54LVNi3RdGWxkGVki4PDSYPgMuKgEbDpb-QIt4CHFotsx59r4z8tPjwihSVSJRiMndtxM0mHSjZVZVx9xK82oJpdTYnajm1x7TPFTLjjxgYlVzIBpXDI-44XC9oqmNT-WVNmkwLZzyylJ-oqai134XyX-0fWzZX9h_lNgckBxO5C1OJoXmnNyhP2Yz71qQI-QuKzUwxyG2I_venfNnKva_eBsSRZLusWFZYh3btDUUCKDxWvYGbwPSDXQoscNQWsp0700pvJwbu4jjC18fqA2AqWJjZk0X24mPM7peAMfQ
+
+
+```

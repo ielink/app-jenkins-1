@@ -32,3 +32,10 @@ my-release-nginx-ingress   LoadBalancer   10.107.206.93    localhost     80:3116
 ### Nginx Ingress controller 
 #### Goal
 you have a single IP address 
+
+#### Name-based Routing
+* www.hello.com
+* www.bye.com
+#### Path-based Routing
+* www.bye.com/bye
+* www.bye.com/bye22

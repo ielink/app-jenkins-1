@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: demo5-ingress
+spec:
+  rules:
+    - host: example.com
+      http:
+        paths:
+         - backend:
+            serviceName: nginx
+            servicePort: 80

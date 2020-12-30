@@ -1,16 +1,76 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: ingress-myservicea
   annotations:
-    # use the shared ingress-nginx
-    kubernetes.io/ingress.class: "nginx"
+    kubernetes.io/ingress.class: nginx
+  name: hello-deploy
+  namespace: default
 spec:
   rules:
-  - host:
+  - host: nginx.example.com
     http:
       paths:
-      - path: /lazy
-        backend:
+      - backend:
           serviceName: hello-deploy
           servicePort: 80
+        path: /lazy
+
+
+
+#apiVersion: extensions/v1beta1
+#kind: Ingress
+#metadata:
+#  annotations:
+#    kubernetes.io/ingress.class: nginx
+#  name: ingress-deploy
+#spec:
+#  backend:
+#    serviceName: hello-deploy
+#    servicePort: 80
+#  rules:
+#  - host: nginx.example.com
+#    http:
+#      paths:
+#      - backend:
+#          serviceName: hello-deploy
+#          servicePort: 80
+### basic
+#apiVersion: networking.k8s.io/v1beta1
+#kind: Ingress
+#metadata:
+#  name: single-ingress-deploy
+#spec:
+#  backend:
+#    serviceName: hello-deploy
+#    servicePort: 80
+
+#apiVersion: networking.k8s.io/v1beta1
+#kind: Ingress
+#metadata:
+#  name: ingress-deploy
+#  annotations:
+#    # use the shared ingress-nginx
+#    kubernetes.io/ingress.class: "nginx"
+#spec:
+#  rules:
+#  - host: www.ffff.sh
+#    http:
+#      paths:
+#        backend:
+#          serviceName: hello-deploy
+#          servicePort: 8070
+
+# different path
+#spec:
+#  rules:
+#  - host: www.ffff.sh
+#    http:
+#      paths:
+#      - path: /deploy
+#        backend:
+#          serviceName: hello-deploy
+#          servicePort: 8070
+#      - path: /bar
+#          backend:
+#            serviceName: bar-svc
+#            servicePort: 8070
