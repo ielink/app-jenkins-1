@@ -3,21 +3,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: {{ .Values.namespace }}
-  name: hello-deploy
+  name: {{ .Values.fullName }}
   labels:
-    app: docker-jenkins
+    app: {{ .Values.fullName }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: docker-jenkins
+      app: {{ .Values.fullName }}
   template:
     metadata:
       labels:
-        app: docker-jenkins
+        app: {{ .Values.fullName }}
     spec:
       containers:
-      - name: docker-jenkins
+      - name: {{ .Values.fullName }}
         image: {{.Values.ImageName}}:{{ .Values.tag }}
         ports:
-        - containerPort: 8070
+        - containerPort: {{ .Values.port }}

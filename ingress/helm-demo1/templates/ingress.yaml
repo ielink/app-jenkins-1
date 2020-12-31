@@ -2,19 +2,19 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  namespace: default
+  namespace: {{ .Values.namespace }}
   name: hello-app-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: hello-world.pvt
+  - host: {{ .Values.host }}
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: hello-svc
+            name: {{ .Values.service.name }}
             port:
-              number: 8070
+              number: {{ .Values.portNumber }}
