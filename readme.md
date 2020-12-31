@@ -184,3 +184,7 @@ eyJhbGciOiJSUzI1NiIsImtpZCI6IlZvTDdpZXZTZ3BqOXdaVV9TOVI3UEZEOG5UNWVWS25IOWJGTkF5
 
 
 ```
+
+# Minikube
+*  minikube start --vm=true --kubernetes-version=v1.19.0
+ `minikube start --vm=true --kubernetes-version=v1.20.0`
