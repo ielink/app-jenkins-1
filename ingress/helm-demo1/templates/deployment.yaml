@@ -2,12 +2,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: default
+  namespace: {{ .Values.namespace }}
   name: hello-deploy
   labels:
     app: docker-jenkins
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: docker-jenkins
@@ -18,7 +18,6 @@ spec:
     spec:
       containers:
       - name: docker-jenkins
-        image: hhssaaffii/docker-jenkins:35
+        image: {{.Values.ImageName}}:{{ .Values.tag }}
         ports:
         - containerPort: 8070
-
