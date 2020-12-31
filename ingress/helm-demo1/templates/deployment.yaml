@@ -3,21 +3,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: {{ .Values.namespace }}
-  name: {{ .Values.fullName }}
+  name: hello-deploy
   labels:
-    app: {{ .Values.fullName }}
+    app: {{ .Values.appName }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ .Values.fullName }}
+      app: {{ .Values.appName }}
   template:
     metadata:
       labels:
-        app: {{ .Values.fullName }}
+        app: {{ .Values.appName }}
     spec:
       containers:
-      - name: {{ .Values.fullName }}
+      - name: {{ .Values.appName }}
         image: {{.Values.ImageName}}:{{ .Values.tag }}
         ports:
         - containerPort: {{ .Values.port }}
