@@ -1,3 +1,7 @@
+library identifier: 'jenkins-shared-lib-demo1@master',
+        retriever: modernSCM([$class: 'GitSCMSource',
+         remote: 'https://github.com/hhammidd/jenkins-shared-lib-demo1.git'])
+
 properties([
   parameters([
 
@@ -16,6 +20,14 @@ pipeline {
         dockerImage = ''
     }
     agent any
+
+    stages {
+            stage("test shared") {
+                steps{
+                    doEcho()
+                }
+            }
+
     stages {
         stage("git checkout") {
             steps{
