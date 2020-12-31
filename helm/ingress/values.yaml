@@ -1,0 +1,22 @@
+replicaCount: 1
+tag: 42
+namespace: default
+service:
+  type: NodePort
+  name: hello-svc
+
+ImageName: hhssaaffii/docker-jenkins
+
+port: 8070
+
+fullName: hello-deploy
+
+appName: docker-jenkins
+
+portNumber: 8070
+host: hello-world.pvt
+
+image: ##DOCKER_REGISTRY##/hhssaaffii/docker-jenkins
+
+artifactory:
+  name: artifactory
