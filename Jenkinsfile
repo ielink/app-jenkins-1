@@ -4,13 +4,8 @@ library identifier: 'jenkins-shared-lib-demo1@master',
 
 properties([
   parameters([
-
-        booleanParam(defaultValue: false, description: 'Image TAG', name: 'deploy'),
-        string(name: 'IMAGE_TAG', defaultValue: '', description: 'Image TAG', ),
-        choice(choices: 'tst\nacc\nprd', description: 'environmet', name: 'env' ),
-        string(name: 'branch', defaultValue: '', description: 'branch', defaultValue: 'master')
-   ]),
-   pipelineTriggers([])
+    string(name: 'IMAGE_TAG', defaultValue: '11', description: 'Image TAG', )
+   ])
 ])
 
 pipeline {
@@ -20,15 +15,13 @@ pipeline {
         dockerImage = ''
     }
     agent any
-
     stages {
-            stage("test shared") {
+        stage("test shared") {
                 steps{
                     doEcho()
                 }
             }
 
-    stages {
         stage("git checkout") {
             steps{
                 git 'https://github.com/hhammidd/app-jenkins.git'
@@ -73,7 +66,7 @@ pipeline {
 
         stage("Install helm and deploy") {
             steps{
-                sh " helm upgrade docker-jenkins  helm/charts/docker-jenkins --set tag=${params.IMAGE_TAG}"
+                sh " helm upgrade docker-jenkins  ingress/helm-demo1 --set tag=${params.IMAGE_TAG}"
             }
         }
 
