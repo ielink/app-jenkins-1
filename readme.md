@@ -11,7 +11,7 @@ see [this](https://gitlab.com/hhammidd/unit-test/-/wikis/CI-CD/Jenkins2) for mor
 Use the following command so you can see more information about the nodes.
 
 `kubectl get nodes -o wide`
-
+blabla
 
 ## services
 * ` alias k="kubectl"`
